@@ -3,19 +3,29 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter String: ");
-        String original = scanner.nextLine();
-        original = original.toLowerCase();
-        String reversed = "";
+        String input = scanner.nextLine();
 
-        for(int i=original.length()-1; i>=0;i--){
-            reversed = reversed + original.charAt(i);
+        char[] arr = input.toCharArray();
+        boolean isPalindrome = true;
+
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            if (arr[start] != arr[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
-        if(original.equalsIgnoreCase(reversed)){
-            System.out.println("Is it a palindrome?: True");
+
+        if (isPalindrome) {
+            System.out.println("It is a Palindrome!");
+        } else {
+            System.out.println("It is NOT a Palindrome!");
         }
-        else{
-            System.out.println("Is it a palindrome?: False");
-        }
+
         scanner.close();
+
     }
 }
