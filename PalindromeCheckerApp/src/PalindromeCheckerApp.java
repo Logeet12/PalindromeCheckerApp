@@ -2,39 +2,37 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.Scanner;
-
+import java.util.Deque;
 public class PalindromeCheckerApp {
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string to check if it is a palindrome: ");
-        String inputString = scanner.nextLine();
-        String cleanString = inputString.replaceAll("\\s+", "").toLowerCase();
 
-        if (isPalindrome(cleanString)) {
-            System.out.println("The input String \"" + inputString + "\" is a palindrome.");
-        } else {
-            System.out.println("The input String \"" + inputString + "\" is not a palindrome.");
-        }
-        scanner.close();
-    }
+        // Define input string
+        String input = "madam";
 
-    public static boolean isPalindrome(String str) {
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        // Create Deque
+        Deque<Character> deque = new LinkedList<>();
 
-        for (char ch : str.toCharArray()) {
-            queue.add(ch);
-            stack.push(ch);
+        // Insert characters into deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
         }
 
-        while (!queue.isEmpty()) {
-            if (queue.remove() != stack.pop()) {
-                return false;
+        // Assume palindrome initially
+        boolean isPalindrome = true;
+
+        // Compare front and rear elements
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
+                isPalindrome = false;
+                break;
             }
         }
 
-        return true;
+        // Print result
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
-
